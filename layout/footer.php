@@ -44,7 +44,7 @@
                             </aside>
                         </div>
                         <div class="col-md-3">
-                            <aside class="f_widget">
+                            <!-- <aside class="f_widget">
                                 <div class="f_widget_title">
                                     <h3>Newsletter Signup</h3>
                                 </div>
@@ -57,7 +57,7 @@
                                         </span>
                                     </div>
                                 </div>
-                            </aside>
+                            </aside> -->
                         </div>
                     </div>
                 </div>
