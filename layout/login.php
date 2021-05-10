@@ -5,13 +5,13 @@
                <input type="password" placeholder="Password" ng-model="password">
                <div class="login_btn_area">
                    <button type="submit" value="LogIn" class="btn form-control login_btn">LogIn</button>
-                   <div class="login_social">
+                   <!-- <div class="login_social">
                        <h5>Login With</h5>
                        <ul>
                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                        </ul>
-                   </div>
+                   </div> -->
                </div>
            </form>
            <img class="mfp-close" src="img/close-btn.png" alt="">
