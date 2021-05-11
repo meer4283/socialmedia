@@ -34,11 +34,24 @@
                                 </div>
                                 <div class="recent_post_widget">
                                     <ul>
-                                        <li><a href="#">Blog Standard Post <span>14 Sep, 2016</span></a></li>
-                                        <li><a href="#">Blog Image Post <span>12 Sep, 2016</span></a></li>
-                                        <li><a href="#">BlogVideo Post <span>08 Sep, 2016</span></a></li>
-                                        <li><a href="#">Blog Audio  Post <span>03 Sep, 2016</span></a></li>
-                                        <li><a href="#">Blog Standard Post <span>16 Aug, 2016</span></a></li>
+<?php
+
+require_once('functions/config.php');
+
+$query = "SELECT * FROM `users` ORDER BY `users`.`user_id` DESC LIMIT 3";
+$run = mysqli_query($link, $query);
+if (mysqli_num_rows($run) > 0) {
+    while ($row = mysqli_fetch_array($run)) {
+        echo '<li><a href="#">'.$row['fullname'].' <span>'.$row['gender'].'</span></a></li>';
+    }
+
+}
+?>                                       
+                                       
+                                       
+                                        
+                                       
+
                                     </ul>
                                 </div>
                             </aside>

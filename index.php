@@ -1,3 +1,8 @@
+<?php 
+
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -423,88 +428,7 @@
         <!--================End Testimonials Area =================-->
         
         <!--================Blog slider Area =================-->
-        <section class="blog_slider_area">
-            <div class="blog_slider_inner">
-                <div class="item">
-                    <div class="single_blog_slider">
-                        <img src="img/blog/blog_slider/blog_slider-1.jpg" alt="">
-                        <div class="blog_item_content">
-                            <h4>Your Blog title here</h4>
-                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-search"></i></a></li>
-                                <li><a href="#"><i class="fa fa-link"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="single_blog_slider">
-                        <img src="img/blog/blog_slider/blog_slider-3.jpg" alt="">
-                        <div class="blog_item_content">
-                            <h4>Your Blog title here</h4>
-                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-search"></i></a></li>
-                                <li><a href="#"><i class="fa fa-link"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="single_blog_slider">
-                        <img src="img/blog/blog_slider/blog_slider-4.jpg" alt="">
-                        <div class="blog_item_content">
-                            <h4>Your Blog title here</h4>
-                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-search"></i></a></li>
-                                <li><a href="#"><i class="fa fa-link"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="single_blog_slider">
-                        <img src="img/blog/blog_slider/blog_slider-1.jpg" alt="">
-                        <div class="blog_item_content">
-                            <h4>Your Blog title here</h4>
-                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-search"></i></a></li>
-                                <li><a href="#"><i class="fa fa-link"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="single_blog_slider">
-                        <img src="img/blog/blog_slider/blog_slider-3.jpg" alt="">
-                        <div class="blog_item_content">
-                            <h4>Your Blog title here</h4>
-                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-search"></i></a></li>
-                                <li><a href="#"><i class="fa fa-link"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="single_blog_slider">
-                        <img src="img/blog/blog_slider/blog_slider-1.jpg" alt="">
-                        <div class="blog_item_content">
-                            <h4>Your Blog title here</h4>
-                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-search"></i></a></li>
-                                <li><a href="#"><i class="fa fa-link"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+     
         <!--================End Blog slider Area =================-->
         
         <!--================Register Members slider Area =================-->
@@ -515,46 +439,27 @@
                     <img src="img/w-title-b.png" alt="">
                 </div>
                 <div class="r_members_inner">
-                    <div class="item">
-                        <img src="img/members/r_members-1.png" alt="">
-                        <h4>Rocky Ahmed</h4>
-                        <h5>22 years old</h5>
-                    </div>
-                    <div class="item">
-                        <img src="img/members/r_members-2.png" alt="">
-                        <h4>Alex Jones</h4>
-                        <h5>23 years old</h5>
-                    </div>
-                    <div class="item">
-                        <img src="img/members/r_members-3.png" alt="">
-                        <h4>Nancy Martin</h4>
-                        <h5>25 years old</h5>
-                    </div>
-                    <div class="item">
-                        <img src="img/members/r_members-4.png" alt="">
-                        <h4>Kavin Smith</h4>
-                        <h5>20 years old</h5>
-                    </div>
-                    <div class="item">
-                        <img src="img/members/r_members-5.png" alt="">
-                        <h4>Lena Adms</h4>
-                        <h5>26 years old</h5>
-                    </div>
-                    <div class="item">
-                        <img src="img/members/r_members-6.png" alt="">
-                        <h4>Peter Nevill</h4>
-                        <h5>20 years old</h5>
-                    </div>
-                    <div class="item">
-                        <img src="img/members/r_members-2.png" alt="">
-                        <h4>Alex Jones</h4>
-                        <h5>23 years old</h5>
-                    </div>
-                    <div class="item">
-                        <img src="img/members/r_members-3.png" alt="">
-                        <h4>Nancy Martin</h4>
-                        <h5>25 years old</h5>
-                    </div>
+                  
+                <?php
+
+require_once('functions/config.php');
+
+$query = "SELECT * FROM `users` ORDER BY `users`.`user_id` DESC LIMIT 30";
+$run = mysqli_query($link, $query);
+if (mysqli_num_rows($run) > 0) {
+    while ($row = mysqli_fetch_array($run)) {
+        echo '  <div class="item">
+        <img src="uploads/'.$row['profile_pic'].'" alt="">
+        <h4>'.$row['fullname'].'</h4>
+        <h5>'.$row['dob'].' years old</h5>
+    </div>';
+    }
+
+}
+?>   
+
+                 
+                  
                 </div>
             </div>
         </section>

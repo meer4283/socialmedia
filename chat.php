@@ -21,8 +21,8 @@ if (isset($_GET['chatuser'])) {
 
 	$my_data =  mysqli_query($link, $get_user_detail);
 	$all_data = mysqli_fetch_array($my_data);
-	$fullname = $all_data['fullname'];
-	$profile_pic  = $all_data['profile_pic'];
+	$fullnames = $all_data['fullname'];
+	$profile_pics  = $all_data['profile_pic'];
 }
 ?>
 
@@ -829,7 +829,7 @@ Website: http://emilcarlsson.se/
 	</div>
 	<div class="content">
 		<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+			<img src="{{ClickedProfileImage}}" alt="" />
 			<p>{{ClickedFirstName}}</p>
 			<div class="social-media">
 				<i class="fa fa-facebook" aria-hidden="true"></i>
@@ -844,14 +844,16 @@ Website: http://emilcarlsson.se/
 			</ul>
 		</div>
 		<div class="message-input">
- 
+     
 			<div class="wrap">
-      
-			<input type="text" placeholder="Write your message..." ng-model="TypedMessage" />
-			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-			<button type="submit" class="submit" ng-click="SendMessage()"><i class="fa fa-paper-plane" aria-hidden="true" ></i></button>
-		  
+      <form ng-submit="SendMessage()">
+            <input type="text" placeholder="Write your message..." ng-model="TypedMessage" />
+            <i class="fa fa-paperclip attachment" aria-hidden="true" data-toggle="modal" data-target="#exampleModal"></i>
+
+            <button class="submit"><i class="fa fa-paper-plane" ng-submit="SendMessage()"></i></button>
+          </form>
     	</div>
+      
 		</div>
 	</div>
 </div>
@@ -1023,7 +1025,7 @@ Website: http://emilcarlsson.se/
 
 
 
-
+<!-- 
 <script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
 $("#profile-img").click(function() {
@@ -1080,5 +1082,5 @@ $(window).on('keydown', function(e) {
   }
 });
 //# sourceURL=pen.js
-</script>
+</script> -->
 </body></html>

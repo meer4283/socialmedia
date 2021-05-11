@@ -1,4 +1,12 @@
-<div class="login_form_inner zoom-anim-dialog mfp-hide" id="small-dialog">
+<style>
+
+    .down_modal,.mfp-bg,.mfp-container{
+        z-index: 9 !important;
+    }
+
+</style>
+
+<div class="login_form_inner zoom-anim-dialog mfp-hide down_modal" id="small-dialog">
            <h4>User Login</h4>
            <form ng-submit="login()">
                <input type="email" placeholder="Email" ng-model="email">

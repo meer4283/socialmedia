@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $temp = explode(".", $_FILES["file"]["name"]);
         $fileName = round(microtime(true)) . '.' . end($temp);
-        $path = '../../uploads/profile/' . $fileName;
+        $path = '../../uploads/' . $fileName;
         if (move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
           $sql = "UPDATE `users` SET profile_pic='$fileName' WHERE user_id='$last_id'";
           if ($link->query($sql) === TRUE) {

@@ -1,3 +1,99 @@
+
+<style>
+
+@media only screen and (max-width: 479px) {
+			.user-tabs .nav-tabs .nav-item {
+				-ms-flex: 0 0 100%;
+				flex: 0 0 32%;
+			}
+
+			.pro-content {
+
+				display: inline;
+
+				/* margin-left: 5px; */
+			}
+
+			element.style {}
+
+			.doc-img {
+				position: relative;
+				overflow: hidden;
+				z-index: 1;
+				border-radius: 4px;
+				display: inline-block;
+				width: 27%;
+				padding: 7px;
+				float: left;
+			}
+
+			.hide_mobile {
+				display: none;
+
+			}
+
+			#loader {
+				/* position: fixed; */
+
+				/* z-index: 999; */
+				width: 100%;
+				height: 100%;
+				background-color: rgba(255, 255, 255, 0.5);
+
+			}
+
+			#loader img {
+				/* position: fixed;
+				top: 30%;
+				right: 45%; */
+				width: 60px;
+
+
+			}
+
+
+		}
+
+		@media (min-width: 1200px) {
+
+			.hide_desk {
+				display: none;
+			}
+
+			#loader {
+				position: fixed;
+
+				z-index: 999;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(255, 255, 255, 0.5);
+
+			}
+
+			#loader img {
+				position: fixed;
+				top: 30%;
+				right: 45%;
+
+
+			}
+		}
+	
+
+
+    .up_modal{
+        z-index: 99999 !important;
+    }
+
+
+
+</style>
+
+
+<center>
+        <div style="display: none;" id="loader" class="pri3 up_modal"><img src="assets/loading.svg" alt=""></div>
+    </center>
+
 <header class="header_menu_area">
             <nav class="navbar navbar-default">
                 <div class="container">
@@ -73,23 +169,57 @@
                         </li> -->
                         <li><a href="index.php">Home</a></li>
                         <li><a href="members.php">Members</a></li>
-                        <li><a href="members-detail.php">Member Details</a></li>
-                        <li><a href="matches.php">Matching</a></li>
-                        <li><a href="chat.php">Chat Now</a></li>
+                       
                         <li><a href="contact.php">Contact us</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="popup-with-zoom-anim" href="#small-dialog"><i class="mdi mdi-key-variant"></i>Login</a></li>
-                        <li><a href="#register_form" class="popup-with-zoom-anim"><i class="fa fa-user-plus"></i>Registration</a></li>
+                
+   <?php
+   if (session_id() == '') {
+
+    session_start();
+	if(!isset($_SESSION['email']) && !isset($_SESSION['user_id'])  ){
+        echo '<li><a class="popup-with-zoom-anim" href="#small-dialog"><i class="mdi mdi-key-variant"></i>Login</a></li>
+        <li><a href="#register_form" class="popup-with-zoom-anim"><i class="fa fa-user-plus"></i>Registration</a></li>';
+	}
+              
+    else{
+        echo '<li><a href="chat.php">Chat Now</a></li>
+        <li><a href="my-profile.php">My Profile</a></li>';
+    } 
+
+        }
+
+
+        else{
+
+            if(!isset($_SESSION['email']) && !isset($_SESSION['user_id'])  ){
+                echo '<li><a class="popup-with-zoom-anim" href="#small-dialog"><i class="mdi mdi-key-variant"></i>Login</a></li>
+                <li><a href="#register_form" class="popup-with-zoom-anim"><i class="fa fa-user-plus"></i>Registration</a></li>';
+            }
+                      
+            else{
+                echo '<li><a href="chat.php">Chat Now</a></li>
+                <li><a href="my-profile.php">My Profile</a></li>';
+            } 
+
+        }
+       
+     
+   
+   
+   ?>
+                        
+                        
                         <li class="flag_drop">
-                            <div class="selector">
+                            <!-- <div class="selector">
                                 <select class="language_drop" name="countries" id="countries" style="width:300px;">
                                   <option value='yt' data-image="img/country-aus.png" data-imagecss="flag yt" data-title="English">English</option>
                                   <option value='yu' data-image="img/country-bang.png" data-imagecss="flag yu" data-title="Bangladesh">Bangla</option>
                                   <option value='yt' data-image="img/country-aus.png" data-imagecss="flag yt" data-title="English">English</option>
                                   <option value='yu' data-image="img/country-bang.png" data-imagecss="flag yu" data-title="Bangladesh">Bangla</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </li>
                     </ul>
                     </div><!-- /.navbar-collapse -->

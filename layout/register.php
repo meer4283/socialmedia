@@ -1,3 +1,11 @@
+<style>
+
+    .down_modal,.mfp-bg,.mfp-container{
+        z-index: 9 !important;
+    }
+
+</style>
+
 
  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -59,19 +67,34 @@
                                    
                                 </div>
                             </div>
+
+<style>
+
+label.inputfile{
+    padding: 15px;
+    background: #e74c3c; 
+    display: table;
+    color: #fff;
+    border-radius: 20px;
+     }
+
+
+
+input[type="file"] {
+    display: none;
+}
+</style>
+
                             <div class="form-group">
-                            <label for="">Profile Picture</label>
-                            <input id="default-btn" type="file" file-input="files" hidden>
+                            <label for="default-btn" class="inputfile">Upload Profile Picture</label>
+                            <input id="default-btn" type="file" file-input="files" >
                             </div>
                             <div class="reg_chose form-group">
-                                <div class="reg_check_box">
-                                    <input type="radio" id="s-option" name="selector">
-                                    <label for="s-option">I`m Not Robot</label>
-                                    <div class="check"><div class="inside"></div></div>
-                                </div>
+                               
                                 <button type="submit" value="LogIn" class="btn form-control login_btn">Register</button>
                             </div>
                         </form>
+                        <br><br><br>
                         <img class="mfp-close" src="img/close-btn.png" alt="">
                     </div>
                 </div>

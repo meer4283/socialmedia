@@ -74,79 +74,8 @@
 
     </head>
     <body ng-app="myApp" ng-controller="myController" ng-init="onload()" >
-       <div class="login_form_inner zoom-anim-dialog mfp-hide" id="small-dialog">
-           <h4>User Login</h4>
-           <form>
-               <input type="text" placeholder="Username">
-               <input type="password" placeholder="Password">
-               <div class="login_btn_area">
-                   <button type="submit" value="LogIn" class="btn form-control login_btn">LogIn</button>
-                   <div class="login_social">
-                       <h5>Login With</h5>
-                       <ul>
-                           <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                           <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                       </ul>
-                   </div>
-               </div>
-           </form>
-           <img class="mfp-close" src="img/close-btn.png" alt="">
-        </div>
-       
-        <div class="register_form_inner zoom-anim-dialog mfp-hide" id="register_form">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="registration_man">
-                        <img src="img/Registration_man.png" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="registration_form_s">
-                        <h4>Registration</h4>
-                        <form>
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="reg_email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="reg_first" placeholder="Full Name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="reg_user" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="reg_pass" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span data-bind="label">Gender</span>&nbsp;<span class="arrow_carrot-down"><i class="fa fa-sort-asc" aria-hidden="true"></i><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Male</a></li>
-                                        <li><a href="#">Female</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="datepicker">
-                                    <input type='text' class="form-control datetimepicker4" placeholder="Birthday" />
-                                    <span class="add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                </div>
-                            </div>
-                            <div class="reg_chose form-group">
-                                <div class="reg_check_box">
-                                    <input type="radio" id="s-option" name="selector">
-                                    <label for="s-option">I`m Not Robot</label>
-                                    <div class="check"><div class="inside"></div></div>
-                                </div>
-                                <button type="submit" value="LogIn" class="btn form-control login_btn">Register</button>
-                            </div>
-                        </form>
-                        <img class="mfp-close" src="img/close-btn.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+    <?php require_once('layout/login.php'); ?>
+    <?php require_once('layout/register.php'); ?>
        
         <!--================Frist Main hader Area =================-->
         <?php require_once('layout/header.php'); ?>
@@ -203,10 +132,11 @@
                         <div class="right_side_content">
                              <ul class="nav navbar-nav">
                                 <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs"> Settings </i></a>
                                   <ul class="dropdown-menu">
                                     <li><a class="popup-with-zoom-anim" href="#banner_form">Change Profile Image</a></li>
                                     <li><a class="popup-with-zoom-anim" href="#banner_form2">Change Banner</a></li>
+                                    <li><a  href="functions/logout.php">Logout</a></li>
                                     <!-- <li><a href="#">Another action</a></li>
                                     <li><a href="#">Another action</a></li> -->
                                   </ul>
@@ -587,7 +517,23 @@
                                     <img src="img/widget-title-border.png" alt="">
                                 </div>
                                 <ul>
-                                    <li><a href="#"><img src="img/photo/photo-1.jpg" alt=""></a></li>
+                                <?php
+
+require_once('functions/config.php');
+
+$query = "SELECT * FROM `media` where `user_id` = '$user_id' ORDER BY `media`.`media_id` DESC LIMIT 3";
+$run = mysqli_query($link, $query);
+if (mysqli_num_rows($run) > 0) {
+    while ($row = mysqli_fetch_array($run)) {
+        
+        echo '<li><a href="#"><img src="uploads/'.$row['file'].'" alt=""></a></li>';
+    }
+
+}
+?>   
+                               
+                               
+<!--                                     
                                     <li><a href="#"><img src="img/photo/photo-2.jpg" alt=""></a></li>
                                     <li><a href="#"><img src="img/photo/photo-3.jpg" alt=""></a></li>
                                     <li><a href="#"><img src="img/photo/photo-4.jpg" alt=""></a></li>
@@ -595,7 +541,7 @@
                                     <li><a href="#"><img src="img/photo/photo-6.jpg" alt=""></a></li>
                                     <li><a href="#"><img src="img/photo/photo-7.jpg" alt=""></a></li>
                                     <li><a href="#"><img src="img/photo/photo-8.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="img/photo/photo-9.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="img/photo/photo-9.jpg" alt=""></a></li> -->
                                 </ul>
                             </aside>
                             <!-- <aside class="s_widget recent_post_widget">

@@ -18,13 +18,25 @@ app.controller('myController', function($scope, $http, $window){
 
 /////////////////// onload
 
+
+$scope.closeloader = (link) =>{
+  $window.location.href = link;
+}
+
+
+
+
+
+
 $scope.onload = () =>{
     $scope.getMembers();
 }
 /////////////////////////My Profile Page///////////////////////////////////////////////
 
-$scope.SendMessage = function(my_user_id, user_id) {
-  $http.post(
+$scope.SendMessage = function(my_user_id, user_id,isLogged) {
+
+  if(isLogged == "yes"){
+    $http.post(
       "functions/user/sendmessagequick.php", {
           'from_user_id': my_user_id,
           'to_user_id': user_id,
@@ -38,6 +50,12 @@ $scope.SendMessage = function(my_user_id, user_id) {
       $window.location.href = "chat.php?chatuser="+ user_id;
 
   });
+  }
+  else{
+    swal("Please login", "You can send message after login !", "warning");
+  }
+
+
 
 
 }
@@ -105,7 +123,7 @@ $scope.saveMyProfile = () =>{
 /////////////////////// user login 
     $scope.msg = "";
     $scope.login = () => {
-      
+      document.getElementById("loader").style.display = 'block';
       $http.post(
         "functions/user/login.php", {
           'email': $scope.email,
@@ -115,11 +133,14 @@ $scope.saveMyProfile = () =>{
         $scope.response = response.data;
         console.log($scope.response);
         if ($scope.response == "yes") {
+          document.getElementById("loader").style.display = 'none';
           swal("Your are now logged in !", "", "success");
           $window.location.href = "my-profile.php";
         } else if ($scope.response == "no") {
+          document.getElementById("loader").style.display = 'none';
           swal("Account Doesn't Exist!", "", "error");
         } else if ($scope.response == "invalid") {
+          document.getElementById("loader").style.display = 'none';
           swal("Invalid Credentials!", "", "error");
 
         }
@@ -184,7 +205,7 @@ $scope.saveMyProfile = () =>{
  var form_data = new FormData();
 
  $scope.register = function() {
-
+  document.getElementById("loader").style.display = 'block';
 console.log($scope.fullname);
 console.log($scope.email);
 console.log($scope.dob);
@@ -227,11 +248,16 @@ console.log($scope.gender);
      }).then(function(response) {
        console.log(response.data);
        if (response.data == "exist") {
+        document.getElementById("loader").style.display = 'none';
          swal("Not Registerd!", "User Already Exist!", "error");
        } else if (response.data == "no image") {
+        document.getElementById("loader").style.display = 'none';
          swal("Not Registerd!", "Please upload profile image to continue", "error");
+         
        } else if (response.data == "registered") {
+        document.getElementById("loader").style.display = 'none';
         swal("Registerd!", "registered", "success");
+        setTimeout(() => {  location.reload(); }, 3000);
          
        }
      });
